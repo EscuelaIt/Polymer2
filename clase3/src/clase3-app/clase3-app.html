@@ -15,6 +15,11 @@
       pregunta="Te gusta el curso de polymer 1"
       segundos="500"
     ></encuesta-pregunta>
+
+    <componente-basico
+      id="basico"
+    ></componente-basico>
+    <button on-click="manipularAPI">Manipular Componente Básico</button>
   </template>
 
   <script>
@@ -31,6 +36,10 @@
             value: 'clase3-app'
           }
         };
+      }
+
+      manipularAPI() {
+        this.$.basico.cambiarProp('Este valor lo coloco mediante el API del componente-basico');
       }
 
 
