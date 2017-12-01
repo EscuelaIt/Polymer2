@@ -1,0 +1,43 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<link rel="import" href="../encuesta/encuesta-opcion.html">
+
+<dom-module id="clase3-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <encuesta-opcion
+      respuesta="Esta opcion es la buena"
+    ></encuesta-opcion>
+    <encuesta-opcion
+      respuesta="Esta opcion es la buena"
+      marcada="efsdfsdfs"
+    ></encuesta-opcion>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class Clase3App extends Polymer.Element {
+      static get is() { return 'clase3-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'clase3-app'
+          }
+        };
+      }
+
+
+    }
+
+    window.customElements.define(Clase3App.is, Clase3App);
+  </script>
+</dom-module>
