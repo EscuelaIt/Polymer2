@@ -1,0 +1,58 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/lib/elements/dom-repeat.html">
+
+<link rel="import" href="./instrumento-musical.html">
+
+<dom-module id="listado-instrumentos">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <template is="dom-repeat" items="[[instrumentos]]">
+      <instrumento-musical
+        nombre="[[item.nombre]]"
+        descripcion="[[item.descripcion]]"
+        clasificacion="[[item.clasificacion]]"
+      ></instrumento-musical>
+    </template>
+  </template>
+
+  <script>
+    class ListadoInstrumentos extends Polymer.Element {
+      static get is() {
+        return 'listado-instrumentos';
+      }
+      static get properties() {
+        return {
+          instrumentos: {
+            type: Array,
+            value: function() {
+              return [
+               {
+                  nombre: 'Guitarra',
+                  clasificacion: 'cuerda',
+                  descripcion: 'Instrumento musical de cuerda pulsada, compuesto de una caja de resonancia, un mástil y seis cuerdas'
+                },
+                {
+                  nombre: 'Tambor',
+                  clasificacion: 'percusión',
+                  descripcion: 'Instrumento de sonido indeterminado perteneciente a la familia de los membranófonos. Consta de una caja de resonancia, que suele ser de forma cilíndrica, y una membrana llamada parche.'
+                },
+                {
+                  nombre: 'Piano',
+                  clasificacion: 'teclado y cuerdas',
+                  descripcion: 'Está compuesto por una caja de resonancia, a la que se ha agregado un teclado mediante el cual se percuten las cuerdas de acero con macillos forrados de fieltro, produciendo el sonido.'
+                }
+              ];
+            }
+          }
+        };
+      }
+    }
+
+    window.customElements.define(ListadoInstrumentos.is, ListadoInstrumentos);
+  </script>
+</dom-module>

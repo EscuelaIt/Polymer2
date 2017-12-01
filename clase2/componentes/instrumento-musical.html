@@ -1,0 +1,68 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
+
+<dom-module id="instrumento-musical">
+  <template>
+    <style>
+      :host {
+        display: block;
+        padding: 10px 15px;
+        background-color: rgb(211, 247, 247);
+        color: rgb(36, 54, 77);
+        border-radius: 6px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        margin-bottom: 10px;
+      }
+      h1 {
+        font-size: 1.4em;
+        margin: 0;
+        color: #f52757;
+      }
+      p {
+        font-size: .9em;
+        color: #2055a8;
+      }
+      p span {
+        font-weight: bold;
+      }
+    </style>
+    <h1 on-click="toggle">[[nombre]]</h1>
+    <iron-collapse opened="[[desplegado]]">
+      <p on-click="resaltarDescripcion">[[descripcion]]</p>
+      <p><span>Clasificación:</span> [[clasificacion]]</p>
+    </iron-collapse>
+  </template>
+
+  <script>
+    class InstrumentoMusical extends Polymer.Element {
+      static get is() {
+        return 'instrumento-musical';
+      }
+      static get properties() {
+        return {
+          nombre: String,
+          clasificacion: {
+            type: String,
+            value: 'Sin clasificar'
+          },
+          descripcion: String,
+          desplegado: {
+            type: Boolean,
+            value: false
+          }
+        };
+      }
+
+      resaltarDescripcion(e) {
+        console.log(e);
+        this.descripcion = this.descripcion.toUpperCase();
+      }
+
+      toggle() {
+        this.desplegado = !this.desplegado;
+      }
+    }
+
+    window.customElements.define(InstrumentoMusical.is, InstrumentoMusical);
+  </script>
+</dom-module>

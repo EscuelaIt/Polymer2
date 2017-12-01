@@ -1,0 +1,33 @@
+<link rel="import"  href="https://polygit.org/components/polymer/polymer-element.html">
+
+<dom-module id="componente-basico">
+  <template>
+    <style>
+      :host {
+        display: block;
+        margin: 150px;
+        color: blue
+      }
+      ul {
+        color: orangered;
+      }
+    </style>
+
+    <p>Este es el template del componente!</p>
+    <ul>
+      <li>item 1</li>
+      <li>item 2</li>
+      <li>item 3</li>
+    </ul>
+  </template>
+
+  <script>
+    class ComponenteBasico extends Polymer.Element {
+      static get is() {
+        return 'componente-basico';
+      }
+    }
+
+    window.customElements.define(ComponenteBasico.is, ComponenteBasico);
+  </script>
+</dom-module>

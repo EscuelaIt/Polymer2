@@ -1,0 +1,23 @@
+{
+  "name": "clase2",
+  "authors": [
+    "Miguel Angel Alvarez <malvarez@desarrolloweb.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "^2.2.0",
+    "iron-collapse": "PolymerElements/iron-collapse#^2.0.0",
+    "iron-ajax": "PolymerElements/iron-ajax#^2.0.6"
+  }
+}

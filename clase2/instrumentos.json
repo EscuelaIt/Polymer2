@@ -1,0 +1,44 @@
+{
+  "instrumentos": [
+    {
+      "nombre": "Guitarra",
+      "clasificacion": "cuerda",
+      "descripcion": "Instrumento musical de cuerda pulsada, compuesto de una caja de resonancia, un mástil y seis cuerdas"
+    },
+    {
+      "nombre": "Tambor",
+      "clasificacion": "percusión",
+      "descripcion": "Instrumento de sonido indeterminado perteneciente a la familia de los membranófonos. Consta de una caja de resonancia, que suele ser de forma cilíndrica, y una membrana llamada parche."
+    },
+    {
+      "nombre": "Piano",
+      "clasificacion": "teclado y cuerdas",
+      "descripcion": "Está compuesto por una caja de resonancia, a la que se ha agregado un teclado mediante el cual se percuten las cuerdas de acero con macillos forrados de fieltro, produciendo el sonido."
+    },
+    {
+      "nombre": "Flauta",
+      "clasificacion": "viento",
+      "descripcion": "Consta de un tubo, generalmente de madera o metal, con una serie de orificios y una boquilla, en el borde del cual (bisel) se produce el sonido."
+    },
+    {
+      "nombre": "Birimbao",
+      "clasificacion": "cuerda",
+      "descripcion": "El birimbao es un instrumento de cuerda percutida parecido al arco musical, hecho de una vara de madera flexible y un alambre, a los que se agrega una cashishi y una calabaza, que hace las veces de caja de resonancia"
+    },
+    {
+      "nombre": "Yembe",
+      "clasificacion": "percusión",
+      "descripcion": "El Yembe es un instrumento de percusión perteneciente a la familia de instrumentos membranófonos."
+    },
+    {
+      "nombre": "Acordeón",
+      "clasificacion": "viento",
+      "descripcion": "El acordeón es un instrumento musical armónico de viento, conformado por un fuelle, un diapasón y dos cajas armónicas de madera."
+    },
+    {
+      "nombre": "Castañuelas",
+      "clasificacion": "percusión",
+      "descripcion": "Las castañuelas o palillos,1​ son un instrumento musical de percusión, de madera, conocido por los fenicios hace tres mil años."
+    }
+  ]
+}
