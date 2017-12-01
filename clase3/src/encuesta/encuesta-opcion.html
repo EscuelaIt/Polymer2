@@ -1,7 +1,5 @@
 <link rel="import"  href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/polymer/lib/elements/dom-if.html">
-<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
-<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 
 <dom-module id="encuesta-opcion">
   <template>
@@ -31,15 +29,12 @@
     <p 
       on-click="toggle"
       class$="[[clase]]"
-    ><iron-icon icon="[[icono]]"></iron-icon> <span>[[respuesta]]</span></p>
-    <!-- 
-      <template is="dom-if" if="[[marcada]]">
+    ><iron-icon icon="[[icono]]"></iron-icon> <span>[[num]].- [[respuesta]]</span></p>
+    
+    <!-- <template is="dom-if" if="[[mostrarIf]]">
       <p>Sí, está marcada!!!</p>
-    </template> 
-
-    icons:check-box-outline-blank
-    icons:check-box
-    -->
+    </template>  -->
+   
   </template>
 
   <script>
@@ -52,7 +47,16 @@
           respuesta: String,
           marcada: {
             type: Boolean,
-            value: false
+            value: false,
+            reflectToAttribute: true
+          },
+          dos: {
+            type: Boolean,
+            value: true
+          },
+          mostrarIf: {
+            type: Boolean,
+            computed: '_saberSiMostrar(marcada, dos)'  
           },
           icono: {
             type: String,
@@ -61,7 +65,8 @@
           clase: {
             type: String,
             computed: '_calcularClase(marcada)'
-          }
+          },
+          num: Number
         };
       }
 
@@ -81,6 +86,10 @@
       
       toggle() {
         this.marcada = !this.marcada;
+      }
+
+      _saberSiMostrar(marcada, dos) {
+        return marcada && dos;
       }
     }
 
