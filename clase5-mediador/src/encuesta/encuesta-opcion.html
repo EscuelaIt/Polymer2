@@ -1,0 +1,100 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="encuesta-opcion">
+  <template>
+    <style>
+      :host {
+        display: block
+      }
+      .marcada {
+        color: rgb(79, 165, 9);
+        font-weight: bold;
+      }
+      .desmarcada {
+        color: rgb(109, 109, 109);
+      }
+    </style>
+
+    <div class$="[[clase]]" on-click="marcarOpcion">
+      <iron-icon icon="[[icono]]"></iron-icon>
+      <span>
+        [[respuesta]]
+      </span>
+    </div>
+
+  </template>
+
+  <script>
+    /**
+     * `encuesta-opcion` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
+    class EncuestaOpcion extends Polymer.Element {
+      /**
+       * String providing the tag name to register the element under.
+       */
+      static get is() {
+        return 'encuesta-opcion';
+      }
+
+      /**
+       * Object describing property-related metadata used by Polymer features
+       */
+       static get properties() {
+        return {
+          respuesta: String,
+          id: Number,
+          marcada: Number,
+          clase: {
+            type: String,
+            computed: 'calculaClase(marcada)'
+          },
+          icono: {
+            type: String,
+            //computed: 'calculaIcono(marcada)'
+          }
+        };
+      }
+
+      calculaClase(marcada) {
+        if(marcada == this.id) {
+          return 'marcada';
+        }
+        return 'desmarcada';
+      }
+
+      marcarOpcion() {
+        this.dispatchEvent(new CustomEvent('opcion-marcada', {
+          detail: {
+            id: this.id
+          }
+        }))
+      }
+
+      /**
+       * Instance of the element is created/upgraded. Use: initializing state,
+       * set up event listeners, create shadow dom.
+       * @constructor
+       */
+      constructor() {
+        super();
+      }
+
+      /**
+       * Use for one-time configuration of your component after local DOM is initialized. 
+       */
+      ready() {
+        super.ready();
+
+      
+      }
+
+    }
+
+    window.customElements.define(EncuestaOpcion.is, EncuestaOpcion);
+  </script>
+</dom-module>

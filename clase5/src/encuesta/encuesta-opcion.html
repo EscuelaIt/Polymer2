@@ -1,0 +1,101 @@
+<link rel="import"  href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/polymer/lib/elements/dom-if.html">
+
+<dom-module id="encuesta-opcion">
+  <template>
+    <style>
+      :host {
+        display: block;
+        margin: 15px;
+        border-bottom: 1px solid gray;
+      }
+      [hidden] {
+        display: none;
+      }
+      span {
+        display: inline-block;
+        position: relative;
+        top: 1px;
+      }
+      .marcada {
+        color: #295;
+      }
+      .desmarcada {
+        color: #999;
+      }
+    </style>
+    <p on-click="toggle" class$="[[clase]]">
+      <iron-icon icon="[[icono]]"></iron-icon> 
+      <span>[[num]].- [[respuesta]]</span>
+    </p>
+  </template>
+
+  <script>
+    class EncuestaOpcion extends Polymer.Element {
+      static get is() {
+        return 'encuesta-opcion';
+      }
+      static get properties() {
+        return {
+          respuesta: String,
+          marcada: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true
+          },
+          dos: {
+            type: Boolean,
+            value: true
+          },
+          icono: {
+            type: String,
+            computed: '_calcularIcono(marcada)'
+          },
+          clase: {
+            type: String,
+            computed: '_calcularClase(marcada)'
+          },
+          num: Number
+        };
+      }
+
+      _calcularIcono(m) {
+        if(m) {
+          return 'icons:check-box';
+        }
+        return 'icons:check-box-outline-blank';
+      }
+
+      _calcularClase(m) {
+        if(m) {
+          return 'marcada';
+        }
+        return 'desmarcada';
+      }
+      
+      toggle() {
+        this.marcada = !this.marcada;
+        this.dispatchEvent(new CustomEvent('marcada', {
+          detail: {
+            id: this.num
+          },
+          bubbles: true,
+          composed: true
+        }));
+      }
+
+      ready() {
+        super.ready();
+        this.addEventListener('click', this.procesaClick.bind(this));
+      }
+
+      procesaClick() {
+        this.respuesta = 'otra cosa!!!!';
+        console.log('click producido');
+      }
+
+    }
+
+    window.customElements.define(EncuestaOpcion.is, EncuestaOpcion);
+  </script>
+</dom-module>

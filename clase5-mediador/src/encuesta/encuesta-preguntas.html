@@ -1,0 +1,81 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
+
+<link rel="import" href="./encuesta-opcion.html">
+
+<dom-module id="encuesta-preguntas">
+  <template>
+    <style>
+      :host {
+        display: block
+      }
+    </style>
+
+    <template is="dom-repeat" items="[[cuestion.opciones]]" as="opcion">
+      <encuesta-opcion 
+        respuesta="[[opcion]]" 
+        id="[[index]]" 
+        marcada="[[marcada]]"
+        on-opcion-marcada="registraOpcionMarcada"
+      ></encuesta-opcion>
+    </template>
+
+  </template>
+
+  <script>
+    /**
+     * `encuesta-preguntas` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
+    class EncuestaPreguntas extends Polymer.Element {
+      /**
+       * String providing the tag name to register the element under.
+       */
+      static get is() {
+        return 'encuesta-preguntas';
+      }
+
+      /**
+       * Object describing property-related metadata used by Polymer features
+       */
+      static get properties() {
+        return {
+          cuestion: Object,
+          marcada: {
+            type: Number,
+            value: null
+          }
+        };
+      }
+
+      registraOpcionMarcada(e) {
+        this.marcada = e.detail.id;
+      }
+
+      /**
+       * Instance of the element is created/upgraded. Use: initializing state,
+       * set up event listeners, create shadow dom.
+       * @constructor
+       */
+      constructor() {
+        super();
+      }
+
+      /**
+       * Use for one-time configuration of your component after local DOM is initialized. 
+       */
+      ready() {
+        super.ready();
+        
+     
+      }
+
+    }
+
+    window.customElements.define(EncuestaPreguntas.is, EncuestaPreguntas);
+  </script>
+</dom-module>

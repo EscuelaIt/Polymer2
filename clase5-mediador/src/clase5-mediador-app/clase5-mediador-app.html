@@ -1,0 +1,36 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<link rel="import" href="../encuesta/encuesta-element.html">
+
+<dom-module id="clase5-mediador-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    
+    <encuesta-element></encuesta-element>
+
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class Clase5MediadorApp extends Polymer.Element {
+      static get is() { return 'clase5-mediador-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'clase5-mediador-app'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(Clase5MediadorApp.is, Clase5MediadorApp);
+  </script>
+</dom-module>

@@ -1,0 +1,68 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="./encuesta-preguntas.html">
+
+<dom-module id="encuesta-element">
+  <template>
+    <style>
+      :host {
+        display: block
+      }
+    </style>
+
+    <encuesta-timer></encuesta-timer>
+    <encuesta-preguntas cuestion="[[cuestion]]"></encuesta-preguntas>
+
+  </template>
+
+  <script>
+    /**
+     * `encuesta-element` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
+    class EncuestaElement extends Polymer.Element {
+      /**
+       * String providing the tag name to register the element under.
+       */
+      static get is() {
+        return 'encuesta-element';
+      }
+
+      /**
+       * Object describing property-related metadata used by Polymer features
+       */
+      static get properties() {
+        return {
+          cuestion: {
+            type: Object,
+            value: function() {
+              return {
+                pregunta: '¿Qué opinas del aborto de la gallina?',
+                opciones: [
+                  'Me parece fatal',
+                  'Ella es libre de hacer lo que quiera',
+                  'Es una pregunta absurda'
+                ]
+              }
+            }
+          }
+        }
+      }
+
+      /**
+       * Instance of the element is created/upgraded. Use: initializing state,
+       * set up event listeners, create shadow dom.
+       * @constructor
+       */
+      constructor() {
+        super();
+      }
+
+    }
+
+    window.customElements.define(EncuestaElement.is, EncuestaElement);
+  </script>
+</dom-module>
