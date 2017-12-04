@@ -45,16 +45,32 @@
             type: Number,
             value: 60,
             readOnly: true
-          }
+          },
+          temporizador: Object
         };
       }
       resetTime() {
         //this.segundos = 100;
         this._setSegundos(100);
-        //this.push('respuestas', 'otra cosa');
-        this.splice('respuestas', 1, 1);
       }
 
+      ready() {
+        super.ready();
+        this.cuentaAtras();
+      }
+
+      cuentaAtras() {
+        this._setSegundos(this.segundos - 1);
+        this.temporizador = setTimeout(() => {
+          console.log(this.segundos);
+          this.cuentaAtras();
+        }, 1000);
+      }
+
+      disconnectedCallback() {
+        super.disconnectedCallback();
+        clearTimeout(this.temporizador);
+      }
     }
 
     window.customElements.define(EncuestaPregunta.is, EncuestaPregunta);

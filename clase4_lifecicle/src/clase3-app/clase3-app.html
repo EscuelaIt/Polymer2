@@ -12,10 +12,12 @@
     </style>
 
     <encuesta-pregunta
+      id="encuesta"
       pregunta="Te gusta el curso de polymer 1"
       segundos="500"
     ></encuesta-pregunta>
 
+    <button on-click="quitarEncuesta">Quitar encuesta</button>
   </template>
 
   <script>
@@ -32,6 +34,11 @@
             value: 'clase3-app'
           }
         };
+      }
+
+      quitarEncuesta() {
+        //this.shadowRoot.removeChild(this.$.encuesta);
+        this.$.encuesta.remove();
       }
     }
 
