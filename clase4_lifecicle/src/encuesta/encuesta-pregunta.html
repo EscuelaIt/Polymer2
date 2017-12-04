@@ -1,0 +1,62 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="./encuesta-opcion.html">
+
+<dom-module id="encuesta-pregunta">
+  <template>
+    <style>
+      :host {
+        display: block;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+      }
+      div {
+        font-size: .8em;
+        display: inline-block;
+        background-color: orangered;
+        padding: 5px;
+        color: #fff;
+      }
+    </style>
+    <div>Tiempo restante: [[segundos]]</div>
+    <p>[[pregunta]]</p>
+    <template is="dom-repeat" items="[[respuestas]]" as="respuesta">
+      <encuesta-opcion respuesta="[[respuesta]]" num="[[index]]"></encuesta-opcion>
+    </template>
+    <button on-click="resetTime">Resetea tiempo</button>
+  </template>
+
+  <script>
+    class EncuestaPregunta extends Polymer.Element {
+
+      static get is() {
+        return 'encuesta-pregunta';
+      }
+
+      static get properties() {
+        return {
+          pregunta: String,
+          respuestas: {
+            type: Array,
+            value: function() {
+              return ['Esto puede ser', 'No es verdad', 'Tal vez...']
+            }
+          },
+          segundos: {
+            type: Number,
+            value: 60,
+            readOnly: true
+          }
+        };
+      }
+      resetTime() {
+        //this.segundos = 100;
+        this._setSegundos(100);
+        //this.push('respuestas', 'otra cosa');
+        this.splice('respuestas', 1, 1);
+      }
+
+    }
+
+    window.customElements.define(EncuestaPregunta.is, EncuestaPregunta);
+  </script>
+</dom-module>

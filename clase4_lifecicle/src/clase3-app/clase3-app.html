@@ -1,0 +1,40 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../encuesta/encuesta-pregunta.html">
+
+<dom-module id="clase3-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <encuesta-pregunta
+      pregunta="Te gusta el curso de polymer 1"
+      segundos="500"
+    ></encuesta-pregunta>
+
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class Clase3App extends Polymer.Element {
+      static get is() { return 'clase3-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'clase3-app'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(Clase3App.is, Clase3App);
+  </script>
+</dom-module>
