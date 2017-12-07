@@ -1,0 +1,106 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
+
+<link rel="import" href="./encuesta-opcion.html">
+
+<dom-module id="encuesta-preguntas">
+  <template>
+    <style>
+      :host {
+        display: block
+      }
+    </style>
+    <p>[[cuestion.pregunta]]</p>
+    <template is="dom-repeat" items="[[cuestion.opciones]]" as="opcion">
+      <encuesta-opcion 
+        respuesta="[[opcion]]" 
+        id="[[index]]" 
+        marcada="[[marcada]]"
+        on-opcion-marcada="registraOpcionMarcada"
+      ></encuesta-opcion>
+    </template>
+    <button on-click="mostrarPista">Muestra una pista</button>
+
+  </template>
+
+  <script>
+    /**
+     * `encuesta-preguntas` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
+    class EncuestaPreguntas extends Polymer.Element {
+      /**
+       * String providing the tag name to register the element under.
+       */
+      static get is() {
+        return 'encuesta-preguntas';
+      }
+
+      /**
+       * Object describing property-related metadata used by Polymer features
+       */
+      static get properties() {
+        return {
+          cuestion: {
+            type: Object,
+            notify: true
+          },
+          marcada: {
+            type: Number,
+            value: null
+          }
+        };
+      }
+
+      registraOpcionMarcada(e) {
+        this.marcada = e.detail.id;
+      }
+
+      mostrarPista() {
+        // this.cuestion = {
+        //   pregunta: 'kk'
+        // };
+        //this.cuestion.pregunta += ' ' + this.cuestion.pista; 
+        this.set('cuestion.pregunta',  this.cuestion.pregunta + ' ' + this.cuestion.pista); 
+      }
+
+      /**
+       * Instance of the element is created/upgraded. Use: initializing state,
+       * set up event listeners, create shadow dom.
+       * @constructor
+       */
+      constructor() {
+        super();
+      }
+
+      /**
+       * Use for one-time configuration of your component after local DOM is initialized. 
+       */
+      ready() {
+        super.ready();
+        window.addEventListener('keypress', this.marcarConTeclado.bind(this));
+      }
+
+      marcarConTeclado(e) {
+        console.log(e);
+        let teclaNum = parseInt(e.key);
+        if(!isNaN(teclaNum) &&  teclaNum >= 1 && teclaNum < this.cuestion.opciones.length + 1) {
+          console.log('voy a marcar...', teclaNum);
+          this.marcada = teclaNum - 1;
+        }
+      }
+
+      disconnectCallback() {
+        super.disconnectCallback();
+        window.removeEventListener('keypress', this.marcarConTeclado);
+      }
+
+    }
+
+    window.customElements.define(EncuestaPreguntas.is, EncuestaPreguntas);
+  </script>
+</dom-module>

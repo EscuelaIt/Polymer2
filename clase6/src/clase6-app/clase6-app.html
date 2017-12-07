@@ -1,4 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../two-way.html">
+<link rel="import" href="../input-bindeable/input-bindeable.html">
 
 <dom-module id="clase6-app">
   <template>
@@ -7,7 +10,17 @@
         display: block;
       }
     </style>
-    <h2>Hello [[prop1]]!</h2>
+    
+    <paper-input label="Dame tu nombre" value="{{nombre}}"></paper-input>
+    <paper-input label="1 way" value="[[nombre]]"></paper-input>
+
+    <p>Lo que has escrito: [[nombre]]</p>
+    
+    <two-way nombre="{{nombre}}"></two-way>
+    
+    <input-bindeable label="Escribe tu nombre" value="{{nombre}}"></input-bindeable>
+
+    <input type="text" value="{{nombre::input}}">
   </template>
 
   <script>
@@ -19,9 +32,9 @@
       static get is() { return 'clase6-app'; }
       static get properties() {
         return {
-          prop1: {
+          nombre: {
             type: String,
-            value: 'clase6-app'
+            value: ''
           }
         };
       }
