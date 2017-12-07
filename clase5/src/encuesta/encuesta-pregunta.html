@@ -21,6 +21,7 @@
     <p>[[pregunta]]</p>
     <template is="dom-repeat" items="[[respuestas]]" as="respuesta">
       <encuesta-opcion 
+        id="opcion[[index]]"
         respuesta="[[respuesta]]" 
         num="[[index]]"
         on-marcada="marcadaOpcion"
@@ -85,9 +86,10 @@
 
       marcadaOpcion(e) {
         console.log('han marcado una opción', e);
-        for(let i=0; i<this.respuestas; i++) {
+        for(let i=0; i<this.respuestas.length; i++) {
           if(e.detail.id != i) {
-
+            console.log('esta opcion no está marcada', i)
+            this.shadowRoot.querySelector('#opcion' + i).marcada = false;
           }
         }
       }

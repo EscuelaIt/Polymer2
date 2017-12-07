@@ -1,0 +1,81 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="encuesta-timer">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+        padding: 5px;
+        font-size: .8em;
+        font-weight: bold;
+        background-color: rgb(233, 33, 99);
+        color: #fff;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+    </style>
+
+    Tiempo restante: [[segundos]]
+
+  </template>
+
+  <script>
+    /**
+     * `encuesta-timer` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
+    class EncuestaTimer extends Polymer.Element {
+      /**
+       * String providing the tag name to register the element under.
+       */
+      static get is() {
+        return 'encuesta-timer';
+      }
+
+      /**
+       * Object describing property-related metadata used by Polymer features
+       */
+      static get properties() {
+        return {
+          segundos: {
+            type: Number,
+            readOnly: true,
+            value: 60
+          },
+          timeout: Object
+        };
+      }
+
+      /**
+       * Instance of the element is created/upgraded. Use: initializing state,
+       * set up event listeners, create shadow dom.
+       * @constructor
+       */
+      constructor() {
+        super();
+      }
+
+      /**
+       * Use for one-time configuration of your component after local DOM is initialized. 
+       */
+      ready() {
+        super.ready();
+        this.cuentaAtras();
+      }
+
+      cuentaAtras() {
+        this._setSegundos(this.segundos - 1);
+        this.timeout = setTimeout( () => {
+          this.cuentaAtras();
+        }, 1000 );
+      }
+
+    }
+
+    window.customElements.define(EncuestaTimer.is, EncuestaTimer);
+  </script>
+</dom-module>
