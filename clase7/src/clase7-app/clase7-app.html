@@ -1,0 +1,29 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../input-password/password-strength.html">
+<dom-module id="clase7-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <password-strength></password-strength>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class Clase7App extends Polymer.Element {
+      static get is() { return 'clase7-app'; }
+      static get properties() {
+        return {
+          
+        };
+      }
+    }
+
+    window.customElements.define(Clase7App.is, Clase7App);
+  </script>
+</dom-module>
