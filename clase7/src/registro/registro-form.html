@@ -1,0 +1,116 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../input-bindeable/input-bindeable.html">
+<link rel="import" href="../input-password/password-element.html">
+<link rel="import" href="../intereses/intereses-element.html">
+
+<dom-module id="registro-form">
+  <template>
+    <style>
+      :host {
+        display: block;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+      }
+      h1 {
+        font-size: 1.2em;
+      }
+      span {
+        display: inline-block;
+        width: 100px;
+      }
+      .nota {
+        font-size: .8em;
+      }
+      .nota h2 {
+        font-size: 1.1em;
+      }
+      .nota p {
+        margin: 0 0 5px 0;
+
+      }
+    </style>
+
+    <p>
+      <input-bindeable label="nombre" value="{{user.nombre}}"></input-bindeable> <button on-click="borrarNombre">Borrar</button>
+    </p>
+    <p>
+      <input-bindeable label="email" value="{{user.email}}"></input-bindeable>
+    </p>
+    <p>
+      <password-element></password-element>
+    </p>
+    <intereses-element></intereses-element>
+
+    <div class="nota">
+      <h2>Mostrando el dato del formuario</h2>
+      <p>
+        <span>Nombre: </span>[[user.nombre]]
+      </p>
+      <p>
+        <span>Email: </span>[[user.email]]
+      </p>
+    </div>
+
+  </template>
+
+  <script>
+    /**
+     * `registro-form` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
+    class RegistroForm extends Polymer.Element {
+      /**
+       * String providing the tag name to register the element under.
+       */
+      static get is() {
+        return 'registro-form';
+      }
+
+      /**
+       * Object describing property-related metadata used by Polymer features
+       */
+      static get properties() {
+        return {
+          user: {
+            type: Object,
+            value: function() {
+              return {
+                nombre: '',
+                password: '',
+                email: ''
+              }
+            },
+            observer: 'cambiadoUser'
+          }
+        };
+      }
+
+      cambiadoUser() {
+        console.log('HA CAMBIADO EL USER ENTERO');
+      }
+
+      borrarNombre() {
+        this.set('user.nombre', '');
+      }
+      /**
+        * Array of strings describing multi-property observer methods and their
+        * dependant properties
+        */
+      static get observers() {
+        return [
+          '_nombreChanged(user.nombre)'
+        ];
+      }
+
+      _nombreChanged(nombre) {
+        console.log('El nuevo valor escrito es:', nombre);  
+      }
+
+    }
+
+    window.customElements.define(RegistroForm.is, RegistroForm);
+  </script>
+</dom-module>

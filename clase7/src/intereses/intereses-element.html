@@ -1,0 +1,107 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../../bower_components/polymer/lib/elements/dom-if.html">
+
+<link rel="import" href="./intereses-item.html">
+
+<dom-module id="intereses-element">
+  <template>
+    <style>
+      :host {
+        display: block
+      }
+    </style>
+
+    <template is="dom-if" if="[[!maximoIntereses]]">
+      Escribe tu/ interés/es y pulsa enter: <input type="text" value="{{interes::input}}" on-keypress="_detectarEnter">
+    </template>
+    <template is="dom-if" if="[[maximoIntereses]]">
+      Has llegado al máximo de intereses posible. Borra alguno para seguir introduciendo.
+    </template>
+    <template is="dom-repeat" items="[[intereses]]" as="interesItem">
+      <intereses-item interes="[[interesItem]]" id="[[index]]" on-borrar="borrarInteres"></intereses-item>
+    </template>
+    
+    <button on-click="cambiarCasilla"></button>
+  </template>
+
+  <script>
+    /**
+     * `intereses-element` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
+    class InteresesElement extends Polymer.Element {
+      /**
+       * String providing the tag name to register the element under.
+       */
+      static get is() {
+        return 'intereses-element';
+      }
+
+      /**
+       * Object describing property-related metadata used by Polymer features
+       */
+      static get properties() {
+        return {
+          intereses: {
+            type: Array,
+            value: function() { return []; }
+          },
+          interes: {
+            type: String,
+            value: ''
+          },
+          maximoIntereses: {
+            type: Boolean,
+            value: false
+          }
+        };
+      }
+
+      _detectarEnter(e) {
+        if(e.charCode == 13 && !this.maximoIntereses) {
+          this.push('intereses', this.interes);
+          this.interes = '';
+        }
+      }
+
+      borrarInteres(e) {
+        console.log('borrar', e.detail.id);
+        this.splice('intereses', e.detail.id, 1);
+      }
+
+      cambiarCasilla() {
+        //this.intereses[0] = 'nuevo valor';
+        this.set('intereses.0', 'nuevo valor set')
+      }
+
+      /**
+        * Array of strings describing multi-property observer methods and their
+        * dependant properties
+        */
+      static get observers() {
+        return [
+          '_interesesChanged(intereses.splices)'
+        ];
+      }
+
+      _interesesChanged(splices) {
+        if(splices && splices.indexSplices) {
+          console.log(splices);
+          if( splices.indexSplices[0].object.length >=3 ) {
+            this.maximoIntereses = true;
+          } else {
+            this.maximoIntereses = false;          
+          }
+        }
+      }
+
+    }
+
+    window.customElements.define(InteresesElement.is, InteresesElement);
+  </script>
+</dom-module>

@@ -1,6 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
-
+<link rel="import" href="../input-bindeable/input-bindeable.html">
 <link rel="import" href="./encuesta-opcion.html">
 
 <dom-module id="encuesta-preguntas">
@@ -21,6 +21,9 @@
     </template>
     <button on-click="mostrarPista">Muestra una pista</button>
 
+    <h2>Otra respuesta</h2>
+    <input-bindeable label="Escribe algo" value="{{otraRespuesta}}"></input-bindeable>
+    <button on-click="agregarRespuesta">Agregar</button>
   </template>
 
   <script>
@@ -52,12 +55,23 @@
           marcada: {
             type: Number,
             value: null
+          },
+          otraRespuesta: {
+            type: String,
+            otraRespuesta: ''
           }
         };
       }
 
       registraOpcionMarcada(e) {
         this.marcada = e.detail.id;
+      }
+
+      agregarRespuesta() {
+        //this.cuestion.opciones.push(this.otraRespuesta);
+        this.push('cuestion.opciones', this.otraRespuesta);
+        this.marcada = this.cuestion.opciones.length - 1;
+        this.otraRespuesta = '';
       }
 
       mostrarPista() {
