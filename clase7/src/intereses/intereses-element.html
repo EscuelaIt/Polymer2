@@ -12,6 +12,7 @@
       }
     </style>
 
+
     <template is="dom-if" if="[[!maximoIntereses]]">
       Escribe tu/ interés/es y pulsa enter: <input type="text" value="{{interes::input}}" on-keypress="_detectarEnter">
     </template>
@@ -22,7 +23,7 @@
       <intereses-item interes="[[interesItem]]" id="[[index]]" on-borrar="borrarInteres"></intereses-item>
     </template>
     
-    <button on-click="cambiarCasilla"></button>
+    <button on-click="cambiarCasilla">Cambia el primer interés</button>
   </template>
 
   <script>
@@ -76,7 +77,9 @@
 
       cambiarCasilla() {
         //this.intereses[0] = 'nuevo valor';
-        this.set('intereses.0', 'nuevo valor set')
+        if(this.intereses.length > 0) {
+          this.set('intereses.0', 'nuevo valor set')
+        }
       }
 
       /**
@@ -85,7 +88,8 @@
         */
       static get observers() {
         return [
-          '_interesesChanged(intereses.splices)'
+          '_interesesChanged(intereses.splices)',
+          '_interesesCasillasChanged(intereses.*)'
         ];
       }
 
@@ -98,6 +102,10 @@
             this.maximoIntereses = false;          
           }
         }
+      }
+
+      _interesesCasillasChanged(changeRecord) {
+        console.log('changeRecord en una casilla de array:', changeRecord);
       }
 
     }

@@ -101,7 +101,8 @@
         */
       static get observers() {
         return [
-          '_nombreChanged(user.nombre)'
+          '_nombreChanged(user.nombre)',
+          '_userChanged(user.*)'
         ];
       }
 
@@ -109,6 +110,9 @@
         console.log('El nuevo valor escrito es:', nombre);  
       }
 
+      _userChanged(changeRecord) {
+        console.log('changeRecord:', changeRecord);
+      }
     }
 
     window.customElements.define(RegistroForm.is, RegistroForm);
