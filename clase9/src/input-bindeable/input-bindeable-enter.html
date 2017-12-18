@@ -1,0 +1,56 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="./input-bindeable.html">
+<link rel="import" href="../util/event-mixin.html">
+
+
+<dom-module id="input-bindeable-enter">
+  <script>
+    /**
+     * `input-bindeable-enter` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
+    class InputBindeableEnter extends EventMixin(InputBindeable) {
+      /**
+       * String providing the tag name to register the element under.
+       */
+      static get is() {
+        return 'input-bindeable-enter';
+      }
+
+      /**
+       * Object describing property-related metadata used by Polymer features
+       */
+      static get properties() {
+        return {
+          
+        };
+      }
+
+      /**
+       * Use for one-time configuration of your component after local DOM is initialized. 
+       */
+      ready() {
+        super.ready();
+
+        this.addEventListener('keypress', (e) => {
+          if(e.charCode == 13) {
+            // this.dispatchEvent(new CustomEvent('enter-pulsado', {
+            //   detail: {
+            //     value: this.value
+            //   }
+            // }));
+            this.fire('enter-pulsado', { value: this.value });
+            
+          }
+        })
+      }
+
+    }
+
+    window.customElements.define(InputBindeableEnter.is, InputBindeableEnter);
+  </script>
+</dom-module>

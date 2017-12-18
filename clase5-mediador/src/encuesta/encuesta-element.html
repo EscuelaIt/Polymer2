@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
 <link rel="import" href="../../bower_components/polymer/lib/mixins/gesture-event-listeners.html">
 
 <link rel="import" href="./encuesta-preguntas.html">
@@ -40,6 +41,12 @@
      * @polymer
      * @extends {Polymer.Element}
      */
+
+    // const ClassMasMixin = Polymer.GestureEventListeners(Polymer.Element);
+    // class EncuestaElement extends ClassMasMixin {
+    //   /// ...
+    // }
+
     class EncuestaElement extends Polymer.GestureEventListeners(Polymer.Element) {
       /**
        * String providing the tag name to register the element under.

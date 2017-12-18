@@ -1,0 +1,54 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="input-bindeable">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+      }
+    </style>
+
+    <span>[[label]]:</span>
+    <input type="text" value="{{value::input}}">
+
+  </template>
+
+  <script>
+    /**
+     * `input-bindeable` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
+    class InputBindeable extends Polymer.Element {
+      /**
+       * String providing the tag name to register the element under.
+       */
+      static get is() {
+        return 'input-bindeable';
+      }
+
+      /**
+       * Object describing property-related metadata used by Polymer features
+       */
+      static get properties() {
+        return {
+          label: {
+            type: String,
+            value: ''
+          },
+          value: {
+            type: String,
+            value: '',
+            notify: true
+          }
+        };
+      }
+
+    }
+
+    window.customElements.define(InputBindeable.is, InputBindeable);
+  </script>
+</dom-module>

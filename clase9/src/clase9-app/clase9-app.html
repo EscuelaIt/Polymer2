@@ -1,0 +1,43 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../input-bindeable/input-bindeable-enter.html">
+<link rel="import" href="../input-elements/input-text.html">
+<link rel="import" href="../input-elements/input-password.html">
+<dom-module id="clase9-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <input-bindeable-enter label="Escribe algo y pulsa enter" value="sssss" on-enter-pulsado="capturarValor"></input-bindeable-enter>
+
+
+    <hr>
+    <input-text label="esto..." value="esto es un input text" foo="test"></input-text>
+    <input-password label="esto..." value="esto es un input password"></input-password>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class Clase9App extends Polymer.Element {
+      static get is() { return 'clase9-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'clase9-app'
+          }
+        };
+      }
+
+      capturarValor(e) {
+        console.log(e.detail);
+      }
+    }
+
+    window.customElements.define(Clase9App.is, Clase9App);
+  </script>
+</dom-module>

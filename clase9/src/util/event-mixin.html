@@ -1,0 +1,15 @@
+<script>
+
+const EventMixin = Polymer.dedupingMixin(function(superclass) {
+  return class extends superclass {
+    fire(eventName, data = {}) {
+      this.dispatchEvent(new CustomEvent(eventName, {
+        detail: data,
+        bubles: true,
+        composed: true
+      }));
+    }
+  }
+});
+
+</script>
